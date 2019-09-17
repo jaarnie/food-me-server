@@ -18,9 +18,10 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
+      # binding.pry
     end
   end
 
@@ -30,6 +31,15 @@ class Api::V1::UsersController < ApplicationController
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  def login 
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      render json: @user
+    else
+      render json: {error: 'Invalid User'}, status: 402
     end
   end
 
@@ -46,6 +56,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_digest)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :password_digest, :marketing_checkbox)
     end
 end

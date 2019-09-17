@@ -20,7 +20,7 @@ class Api::V1::UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {error: @user.errors}, status: :unprocessable_entity
       # binding.pry
     end
   end
@@ -30,11 +30,11 @@ class Api::V1::UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {error: @user.errors}, status: :unprocessable_entity
     end
   end
 
-  def login 
+  def login
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       render json: @user

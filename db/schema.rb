@@ -10,36 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_150626) do
+ActiveRecord::Schema.define(version: 2019_11_18_120732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "restaurants", force: :cascade do |t|
-    t.json "favourited_restaurant"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_favourites", force: :cascade do |t|
+  create_table "favorites", force: :cascade do |t|
+    t.integer "res_id"
     t.bigint "user_id", null: false
-    t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["restaurant_id"], name: "index_user_favourites_on_restaurant_id"
-    t.index ["user_id"], name: "index_user_favourites_on_user_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "password"
     t.string "password_digest"
+    t.boolean "marketing_checkbox"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "user_favourites", "restaurants"
-  add_foreign_key "user_favourites", "users"
+  add_foreign_key "favorites", "users"
 end

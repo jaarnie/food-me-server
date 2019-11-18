@@ -10,17 +10,21 @@ User.delete_all
 u1 = User.create(first_name: 'Adam', last_name: 'Arnold', email: '2@2', password: '2')
 u2 = User.create(first_name: 'Kat', last_name: 'Nemcova', email: '1@1', password: '1')
 
-Restaurant.delete_all
-r1 = Restaurant.create(favourited_restaurant: 'r { r: 1}')
-r2 = Restaurant.create(favourited_restaurant: 'r { r: 2}')
-r3 = Restaurant.create(favourited_restaurant: 'r { r: 3}')
-r4 = Restaurant.create(favourited_restaurant: 'r { r: 4}')
+# Favorite.delete_all
+# f1 = Favorite.create(res_id: 12345, user_id: 1)
+# f1 = Favorite.create(res_id: 246810, user_id: 1)
+# f1 = Favorite.create(res_id: 1098765, user_id: 2)
+# f1 = Favorite.create(res_id: 987654, user_id: 2)
 
-UserFavourite.delete_all
-f1 = UserFavourite.create(user_id: u1.id, restaurant_id: r2.id)
-f2 = UserFavourite.create(user_id: u1.id, restaurant_id: r1.id)
-f3 = UserFavourite.create(user_id: u2.id, restaurant_id: r1.id)
-f4 = UserFavourite.create(user_id: u2.id, restaurant_id: r2.id)
-f5 = UserFavourite.create(user_id: u2.id, restaurant_id: r3.id)
+# Restaurant.delete_all
+# r1 = Restaurant.create(favourited_restaurant: 'r { r: 1}')
+# r2 = Restaurant.create(favourited_restaurant: 'r { r: 2}')
+# r3 = Restaurant.create(favourited_restaurant: 'r { r: 3}')
+# r4 = Restaurant.create(favourited_restaurant: 'r { r: 4}')
 
-
+# UserFavourite.delete_all
+# f1 = UserFavourite.create(user_id: u1.id, restaurant_id: r2.id)
+# f2 = UserFavourite.create(user_id: u1.id, restaurant_id: r1.id)
+# f3 = UserFavourite.create(user_id: u2.id, restaurant_id: r1.id)
+# f4 = UserFavourite.create(user_id: u2.id, restaurant_id: r2.id)
+# f5 = UserFavourite.create(user_id: u2.id, restaurant_id: r3.id)

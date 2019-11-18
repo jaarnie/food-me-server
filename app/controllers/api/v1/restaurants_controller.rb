@@ -15,10 +15,12 @@ class Api::V1::RestaurantsController < ApplicationController
 
   # POST /restaurants
   def create
+    # @restaurant = Restaurant.find_or_create_by(restaurant_params)
     @restaurant = Restaurant.new(restaurant_params)
+    # require 'pry'; binding.pry
 
     if @restaurant.save
-      render json: @restaurant, status: :created, location: @restaurant
+      render json: @restaurant, status: :created
     else
       render json: @restaurant.errors, status: :unprocessable_entity
     end
@@ -46,6 +48,8 @@ class Api::V1::RestaurantsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def restaurant_params
-      params.fetch(:restaurant, {})
+      # params.fetch(:restaurant)
+      # params.require(:restaurant).permit(:favourited_restaurant, :id, :user)
+      # require 'pry'; binding.pry
     end
 end

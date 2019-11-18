@@ -43,6 +43,10 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # def remove_favorite
+  #   @favorite = Favorite.find(params)
+  # end
+
   # DELETE /users/1
   def destroy
     @user.destroy
@@ -56,13 +60,13 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:first_name, 
-                                   :last_name, 
-                                   :email, 
-                                   :password, 
-                                   :password_confirmation, 
-                                   :password_digest, 
-                                   :marketing_checkbox, 
+      params.require(:user).permit(:first_name,
+                                   :last_name,
+                                   :email,
+                                   :password,
+                                   :password_confirmation,
+                                   :password_digest,
+                                   :marketing_checkbox,
                                   )
     end
 end

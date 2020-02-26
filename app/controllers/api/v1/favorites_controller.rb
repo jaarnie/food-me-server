@@ -1,19 +1,18 @@
-class Api::V1::FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :update, :destroy]
+# frozen_string_literal: true
 
-  # GET /favorites
+class Api::V1::FavoritesController < ApplicationController
+  before_action :set_favorite, only: %i[show update destroy]
+
   def index
     @favorites = Favorite.all
 
     render json: @favorites
   end
 
-  # GET /favorites/1
   def show
     render json: @favorite
   end
 
-  # POST /favorites
   def create
     @favorite = Favorite.find_or_create_by(favorite_params)
 
@@ -24,7 +23,6 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /favorites/1
   def update
     if @favorite.update(favorite_params)
       render json: @favorite
@@ -33,26 +31,23 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /favorites/1
   def destroy
     @favorite = Favorite.find(params[:res_id])
-    require 'pry'; binding.pry
     @favorite.destroy
   end
 
   def remove
-    @favorite = Favorite.find_by(user_id: params["user_id"], res_id: params["res_id"])
+    @favorite = Favorite.find_by(user_id: params['user_id'], res_id: params['res_id'])
     @favorite.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def favorite_params
-      params.require(:favorite).permit(:user_id, :res_id, :restaurant)
-    end
+  def set_favorite
+    @favorite = Favorite.find(params[:id])
+  end
+
+  def favorite_params
+    params.require(:favorite).permit(:user_id, :res_id, :restaurant)
+  end
 end

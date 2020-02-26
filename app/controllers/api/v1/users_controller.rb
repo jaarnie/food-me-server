@@ -1,72 +1,65 @@
-class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+# frozen_string_literal: true
 
-  # GET /users
+class Api::V1::UsersController < ApplicationController
+  before_action :set_user, only: %i[show update destroy]
+
   def index
     @users = User.all
 
     render json: @users
   end
 
-  # GET /users/1
   def show
     render json: @user
   end
 
-  # POST /users
   def create
     @user = User.new(user_params)
 
     if @user.save
       render json: @user, status: :created
     else
-      render json: {error: @user.errors}, status: :unprocessable_entity
-      # binding.pry
+      render json: { error: @user.errors }, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
       render json: @user
+
     else
-      render json: {error: @user.errors}, status: :unprocessable_entity
+      render json: { error: @user.errors }, status: :unprocessable_entity
     end
   end
 
   def login
     @user = User.find_by(email: params[:email])
-    if @user && @user.authenticate(params[:password])
+    if @user&.authenticate(params[:password])
+
       render json: @user
     else
-      render json: {error: 'Invalid User'}, status: 402
+      render json: { error: 'Invalid User' }, status: 402
     end
   end
 
-  # def remove_favorite
-  #   @favorite = Favorite.find(params)
-  # end
-
-  # DELETE /users/1
   def destroy
     @user.destroy
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:first_name,
-                                   :last_name,
-                                   :email,
-                                   :password,
-                                   :password_confirmation,
-                                   :password_digest,
-                                   :marketing_checkbox,
-                                  )
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name,
+                                 :last_name,
+                                 :email,
+                                 :favorite_count,
+                                 :password,
+                                 :password_confirmation,
+                                 :password_digest,
+                                 :marketing_checkbox)
+  end
 end

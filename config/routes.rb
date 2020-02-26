@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
@@ -10,10 +12,8 @@ Rails.application.routes.draw do
         end
       end
 
-
-
       resources :users
-          post 'login', to: 'users#login'
+      post 'login', to: 'users#login'
     end
   end
 end

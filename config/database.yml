@@ -24,6 +24,9 @@ default: &default
 development:
   <<: *default
   database: food_me_server_development
+  password: <%= ENV['FOOD_ME_SERVER_DATABASE_PASSWORD'] %>
+
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

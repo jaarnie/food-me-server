@@ -56,7 +56,6 @@ class Api::V1::UsersController < ApplicationController
     params.require(:user).permit(:first_name,
                                  :last_name,
                                  :email,
-                                 :favorite_count,
                                  :password,
                                  :password_confirmation,
                                  :password_digest,

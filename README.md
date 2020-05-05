@@ -1,24 +1,28 @@
-# README
+# Food Me Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Little restaurant searching app using the Zomato API.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
+### Installation
 
-* Configuration
 
-* Database creation
+Client: 
+```sh
+$ git clone git@github.com:jaarnie/food-me-client-2.git
+$ cd food-me-client-2
+$ npm install
+$ npm start
+```
 
-* Database initialization
+Server:
+```sh
+$ git clone git@github.com:jaarnie/food-me-server.git
+$ cd food-me-serve
+$ bundle install
+$ rails s
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Sign in with test account (or create a new one):
+email: 2@2
+password: 2

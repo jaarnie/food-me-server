@@ -20,6 +20,7 @@ Server:
 $ git clone git@github.com:jaarnie/food-me-server.git
 $ cd food-me-serve
 $ bundle install
+$ bundle exec rake db_tasks:rebuild
 $ rails s
 ```
 
